@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Destino Escalada — Reservas</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- DECORACIONES DE PRESAS -->
+<svg class="deco" style="top:0;right:-15px;width:170px;height:170px" viewBox="0 0 170 170" aria-hidden="true">
+  <ellipse cx="115" cy="38" rx="36" ry="26" fill="#e05878" opacity="0.2" transform="rotate(-25 115 38)"/>
+  <ellipse cx="125" cy="40" rx="26" ry="18" fill="#e05878" opacity="0.13" transform="rotate(-25 125 40)"/>
+  <path d="M95 95 Q108 86 124 95 Q136 109 124 122 Q108 130 95 122 Q83 108 95 95Z" fill="#e05878" opacity="0.13"/>
+  <ellipse cx="55" cy="148" rx="16" ry="11" fill="#5abed8" opacity="0.18" transform="rotate(15 55 148)"/>
+</svg>
+<svg class="deco" style="bottom:20px;left:-15px;width:130px;height:160px" viewBox="0 0 130 160" aria-hidden="true">
+  <ellipse cx="30" cy="50" rx="24" ry="18" fill="#5abed8" opacity="0.18" transform="rotate(20 30 50)"/>
+  <ellipse cx="33" cy="52" rx="16" ry="11" fill="#5abed8" opacity="0.13" transform="rotate(20 33 52)"/>
+  <ellipse cx="75" cy="115" rx="20" ry="15" fill="#e05878" opacity="0.14" transform="rotate(-15 75 115)"/>
+  <path d="M8 125 Q20 113 35 121 Q44 134 35 144 Q20 150 8 138 Q0 128 8 125Z" fill="#5abed8" opacity="0.15"/>
+</svg>
+
+<div class="pg">
+
+  <!-- PAGINA HOME -->
+  <div id="home">
+    <div class="hdr">
+      <img class="logo-img" src="logo.png" alt="Destino Escalada">
+      <div class="tag">— reserva tu lugar —</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="cat" id="cat-esc">
+      <div class="catl"><div class="catn"></div><div class="catt esc">Escalada</div><div class="catn"></div></div>
+      <div id="lE"></div>
+    </div>
+
+    <div class="cat" id="cat-dan">
+      <div class="catl"><div class="catn"></div><div class="catt dan">Danza aérea</div><div class="catn"></div></div>
+      <div id="lD"></div>
+    </div>
+  </div>
+
+  <!-- PAGINA FORMULARIO -->
+  <div class="fp" id="fp">
+    <div class="fhdr">
+      <button class="back" onclick="goBack()"><i class="ti ti-arrow-left"></i></button>
+      <div><div class="fhn" id="fhN"></div><div class="fhc" id="fhC"></div></div>
+    </div>
+    <div class="sbar"><div class="sseg on" id="g1"></div><div class="sseg" id="g2"></div><div class="sseg" id="g3"></div></div>
+    <div class="fb">
+
+      <!-- PASO 1: DATOS -->
+      <div class="stp on" id="s1">
+        <div class="st">Tus datos</div>
+        <div class="frow">
+          <div class="fld"><label>Nombre</label><input id="fN" type="text" placeholder="Tu nombre"></div>
+          <div class="fld"><label>Apellidos</label><input id="fL" type="text" placeholder="Apellidos"></div>
+        </div>
+        <div class="fld"><label>Correo</label><input id="fE" type="email" placeholder="tu@correo.com"></div>
+        <div class="fld" id="elF" style="display:none"><label>Elemento</label><div class="elr" id="elR"></div></div>
+        <button class="btn bi" onclick="dGo(2)"><i class="ti ti-arrow-right"></i> Continuar</button>
+      </div>
+
+      <!-- PASO 2: CALENDARIO -->
+      <div class="stp" id="s2">
+        <div class="st">Elige fecha</div>
+        <div class="cnav">
+          <button class="cnb" onclick="dCM(-1)"><i class="ti ti-chevron-left"></i></button>
+          <div class="cmonth" id="cmL"></div>
+          <button class="cnb" onclick="dCM(1)"><i class="ti ti-chevron-right"></i></button>
+        </div>
+        <div class="cgrid" id="cG"></div>
+        <div class="clg">
+          <div class="li"><div class="lid" style="background:#e8f6fa;border:1px solid #b0dcea"></div>Disponible</div>
+          <div class="li"><div class="lid" style="background:#1a1410"></div>Seleccionado</div>
+        </div>
+        <div id="tSec" style="display:none">
+          <div class="st2">Hora</div>
+          <div class="tg" id="tG"></div>
+        </div>
+        <div class="brow">
+          <button class="btn bg" onclick="dGo(1)"><i class="ti ti-arrow-left"></i></button>
+          <button class="btn bi" id="b3" onclick="dGo(3)" disabled><i class="ti ti-arrow-right"></i> Continuar</button>
+        </div>
+      </div>
+
+      <!-- PASO 3: CONFIRMAR -->
+      <div class="stp" id="s3">
+        <div class="st">Confirmar</div>
+        <div class="cc">
+          <div class="cch">Resumen de tu reserva</div>
+          <div class="cr"><span class="cl"><i class="ti ti-layout-grid"></i>Servicio</span><span class="cv" id="cS"></span></div>
+          <div class="cr" id="cER" style="display:none"><span class="cl"><i class="ti ti-tools"></i>Elemento</span><span class="cv" id="cE"></span></div>
+          <div class="cr"><span class="cl"><i class="ti ti-user"></i>Persona</span><span class="cv" id="cN"></span></div>
+          <div class="cr"><span class="cl"><i class="ti ti-mail"></i>Correo</span><span class="cv" id="cEM"></span></div>
+          <div class="cr"><span class="cl"><i class="ti ti-calendar"></i>Fecha</span><span class="cv" id="cD"></span></div>
+          <div class="cr"><span class="cl"><i class="ti ti-clock"></i>Hora</span><span class="cv" id="cT"></span></div>
+        </div>
+        <div class="brow">
+          <button class="btn bg" onclick="dGo(2)"><i class="ti ti-arrow-left"></i></button>
+          <button class="btn bi" onclick="dSubmit()"><i class="ti ti-check"></i> Confirmar reserva</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EXITO -->
+  <div class="sp" id="sp">
+    <div class="stamp">✓</div>
+    <div class="succt">¡Reserva lista!</div>
+    <div class="succs">Tu lugar está apartado.<br>Te esperamos en Destino Escalada.</div>
+    <div class="sd" id="sD"></div>
+    <button class="btn bg" onclick="dReset()" style="max-width:280px;margin:0 auto"><i class="ti ti-home"></i> Hacer otra reserva</button>
+  </div>
+
+</div>
+
+<script src="data.js"></script>
+<script>
+const M=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DF=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+const DS=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+let d = loadData();
+let cur=null, sD=null, sS=null, sE=null, cY, cM;
+
+function render(){
+  const eL=document.getElementById('lE'), dL=document.getElementById('lD');
+  eL.innerHTML=''; dL.innerHTML='';
+  const e=d.services.filter(s=>s.cat==='escalada');
+  const da=d.services.filter(s=>s.cat==='danza');
+  e.forEach(s=>eL.innerHTML+=btn(s,'esc'));
+  da.forEach(s=>dL.innerHTML+=btn(s,'dan'));
+  document.getElementById('cat-esc').style.display = e.length ? 'block' : 'none';
+  document.getElementById('cat-dan').style.display = da.length ? 'block' : 'none';
+}
+
+function btn(s,c){
+  const n=(d.schedules[s.id]||[]).filter(x=>x.active).length;
+  const i=c==='esc'?'🧗':'🎪';
+  return `<button class="svc ${c}" onclick="dOpen('${s.id}')"><div class="svci ${c}">${i}</div><div style="flex:1;min-width:0"><div class="svcn">${s.name}</div><div class="svcd">${s.desc} · ${n} horario${n===1?'':'s'}</div></div><i class="ti ti-chevron-right svca"></i></button>`;
+}
+
+function dOpen(id){
+  cur=d.services.find(s=>s.id===id); if(!cur) return;
+  document.getElementById('home').style.display='none';
+  document.getElementById('fp').style.display='block';
+  document.getElementById('fhN').textContent=cur.name;
+  document.getElementById('fhC').textContent=cur.cat==='escalada'?'🧗 Escalada':'🎪 Danza aérea';
+  document.getElementById('fN').value=''; document.getElementById('fL').value=''; document.getElementById('fE').value='';
+  sD=null; sS=null; sE=null;
+  const f=document.getElementById('elF');
+  if(cur.elemento && cur.elemento!==''){
+    f.style.display='block';
+    const o=cur.elemento==='ambos'?['lira','tela']:[cur.elemento];
+    document.getElementById('elR').innerHTML=o.map(x=>`<div class="elo" onclick="dPE('${x}',this)"><div class="eli">${x==='lira'?'⭕':'🎀'}</div><div class="eln">${x.charAt(0).toUpperCase()+x.slice(1)}</div></div>`).join('');
+  } else { f.style.display='none'; sE=''; }
+  const n=new Date(); cY=n.getFullYear(); cM=n.getMonth();
+  document.getElementById('tSec').style.display='none';
+  document.getElementById('b3').disabled=true;
+  dGo(1);
+}
+
+function dPE(v,el){
+  document.querySelectorAll('.elo').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on'); sE=v;
+}
+
+function goBack(){
+  document.getElementById('fp').style.display='none';
+  document.getElementById('home').style.display='block';
+}
+
+function dGo(n){
+  if(n===2){
+    if(!document.getElementById('fN').value.trim() || !document.getElementById('fL').value.trim()){ alert('Ingresa tu nombre y apellidos'); return; }
+    const em=document.getElementById('fE').value.trim();
+    if(!em || !em.includes('@')){ alert('Ingresa un correo válido'); return; }
+    if(cur.elemento && cur.elemento!=='' && !sE){ alert('Selecciona un elemento (lira o tela)'); return; }
+    rC();
+  }
+  if(n===3){ if(!sD || !sS){ alert('Selecciona fecha y hora'); return; } fC(); }
+  document.querySelectorAll('.stp').forEach(x=>x.classList.remove('on'));
+  document.getElementById('s'+n).classList.add('on');
+  for(let i=1;i<=3;i++){
+    const g=document.getElementById('g'+i);
+    g.classList.remove('on');
+    if(i<=n) g.classList.add('on');
+  }
+}
+
+function rC(){
+  document.getElementById('cmL').textContent = M[cM]+' '+cY;
+  const g=document.getElementById('cG'); g.innerHTML='';
+  DS.forEach(x=>g.innerHTML+=`<div class="ch">${x}</div>`);
+  const f=new Date(cY,cM,1).getDay();
+  const dy=new Date(cY,cM+1,0).getDate();
+  const td=new Date(); td.setHours(0,0,0,0);
+  const sl=(d.schedules[cur.id]||[]).filter(s=>s.active);
+  const aD=new Set(sl.map(s=>s.day));
+  for(let i=0;i<f;i++) g.innerHTML+=`<div class="cd em"></div>`;
+  const isDan=cur.cat==='danza';
+  for(let i=1;i<=dy;i++){
+    const dt=new Date(cY,cM,i);
+    const dw=dt.getDay();
+    const ds=`${cY}-${String(cM+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
+    const past=dt<td;
+    const has=aD.has(dw);
+    const sf=sl.filter(s=>s.day===dw);
+    const full=sf.length>0 && sf.every(s=>{
+      const bk=(d.bookings||[]).filter(b=>b.serviceId===cur.id && b.date===ds && b.slotId===s.id && b.status!=='cancelled').length;
+      return bk>=s.cupos;
+    });
+    let cls='cd';
+    if(past) cls+=' ps';
+    else if(!has || full) cls+=' un';
+    else cls += isDan ? ' av dn' : ' av';
+    if(ds===sD) cls+=' sel';
+    const ck=!past && has && !full;
+    g.innerHTML += `<div class="${cls}" ${ck?`onclick="dPD('${ds}',${dw})"`:''}>${i}</div>`;
+  }
+}
+
+function dCM(x){
+  cM+=x;
+  if(cM<0){ cM=11; cY--; }
+  if(cM>11){ cM=0; cY++; }
+  sD=null; sS=null;
+  document.getElementById('tSec').style.display='none';
+  document.getElementById('b3').disabled=true;
+  rC();
+}
+
+function dPD(ds,dw){
+  sD=ds; sS=null;
+  document.getElementById('b3').disabled=true;
+  rC(); rS(ds,dw);
+}
+
+function rS(ds,dw){
+  const sec=document.getElementById('tSec');
+  const g=document.getElementById('tG');
+  const sl=(d.schedules[cur.id]||[]).filter(s=>s.active && s.day===dw);
+  if(!sl.length){ sec.style.display='none'; return; }
+  sec.style.display='block'; g.innerHTML='';
+  sl.sort((a,b)=>a.time.localeCompare(b.time)).forEach(s=>{
+    const bk=(d.bookings||[]).filter(b=>b.serviceId===cur.id && b.date===ds && b.slotId===s.id && b.status!=='cancelled').length;
+    const lf=s.cupos-bk;
+    const fl=lf<=0;
+    g.innerHTML += `<div class="ts ${fl?'fl':''}" ${!fl?`onclick="dPS('${s.id}','${s.time}',this)"`:''}><div class="th">${s.time}</div><div class="tc">${fl?'Sin cupos':lf+' cupo'+(lf===1?'':'s')}</div></div>`;
+  });
+}
+
+function dPS(id,t,el){
+  document.querySelectorAll('.ts').forEach(x=>x.classList.remove('s'));
+  el.classList.add('s');
+  sS={id,time:t};
+  document.getElementById('b3').disabled=false;
+}
+
+function fC(){
+  const dt=new Date(sD+'T12:00:00');
+  const lb=DF[dt.getDay()]+', '+dt.getDate()+' de '+M[dt.getMonth()]+' de '+dt.getFullYear();
+  document.getElementById('cS').textContent=cur.name;
+  document.getElementById('cN').textContent=document.getElementById('fN').value+' '+document.getElementById('fL').value;
+  document.getElementById('cEM').textContent=document.getElementById('fE').value;
+  document.getElementById('cD').textContent=lb;
+  document.getElementById('cT').textContent=sS.time;
+  const er=document.getElementById('cER');
+  if(sE){ er.style.display='flex'; document.getElementById('cE').textContent=sE.charAt(0).toUpperCase()+sE.slice(1); }
+  else er.style.display='none';
+}
+
+function dSubmit(){
+  const b={
+    id:'b'+Date.now(),
+    serviceId:cur.id,
+    name:document.getElementById('fN').value.trim(),
+    lastname:document.getElementById('fL').value.trim(),
+    email:document.getElementById('fE').value.trim(),
+    elemento:sE,
+    date:sD,
+    slotId:sS.id,
+    time:sS.time,
+    status:'pending',
+    createdAt:new Date().toISOString()
+  };
+  // Recargar datos por si admin cambió algo
+  d = loadData();
+  if(!d.bookings) d.bookings=[];
+  d.bookings.push(b);
+  saveData(d);
+  show(b);
+}
+
+function show(b){
+  document.getElementById('fp').style.display='none';
+  const dt=new Date(b.date+'T12:00:00');
+  const lb=DF[dt.getDay()]+', '+dt.getDate()+' de '+M[dt.getMonth()];
+  document.getElementById('sD').innerHTML = `
+    <div class="sr"><i class="ti ti-layout-grid"></i>${cur.name}</div>
+    ${b.elemento?`<div class="sr"><i class="ti ti-tools"></i>${b.elemento.charAt(0).toUpperCase()+b.elemento.slice(1)}</div>`:''}
+    <div class="sr"><i class="ti ti-calendar"></i>${lb}</div>
+    <div class="sr"><i class="ti ti-clock"></i>${b.time}</div>
+    <div class="sr"><i class="ti ti-user"></i>${b.name} ${b.lastname}</div>`;
+  document.getElementById('sp').style.display='block';
+}
+
+function dReset(){
+  document.getElementById('sp').style.display='none';
+  document.getElementById('home').style.display='block';
+  // Recargar datos para reflejar nuevas reservas
+  d = loadData();
+  render();
+}
+
+// Inicializar
+render();
+</script>
+
+</body>
+</html>
